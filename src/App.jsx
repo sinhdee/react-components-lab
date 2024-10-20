@@ -1,11 +1,5 @@
-// src/App.jsx
+import './WeatherForecast.css'
 
-const App = () => {
-
-  return (
-    <h1>Hello world!</h1>
-  );
-}
 const weatherForecasts = [
   {
     day: 'Mon',
@@ -44,18 +38,40 @@ const weatherForecasts = [
   },
 ];
 
-<>
-  <h1>Local Weather</h1>
-  <section>
+const WeatherForecast = ({day, img, imgAlt, conditions, time}) => {
+  return (
+    <div className="weather">
+      <h2>{day}</h2>
+      <img src={img} alt={imgAlt}/>
+      <p>
+        <span>conditions:</span>{conditions}
+      </p>
+      <p>
+        <span>time:</span>{time}
+      </p>
+     </div>
+  )
+}
 
-  <div className="weather">
-  <h2>Day of the Week</h2>
-  <img src="" alt="" />
-  <p><span>conditions: </span>current weather conditions</p>
-  <p><span>time: </span>time of day</p>
-</div>
 
-  </section>
-</>
+const App = () => {
+  return (
+    <>
+    <h1>Local Weather</h1>
+    <section>
+      {weatherForecasts.map((forecast, index) => (
+        <WeatherForecast
+        key={index}
+        day={forecast.day}
+        img={forecast.img}
+        imgAlt={forecast.imgAlt}
+        conditions={forecast.conditions}
+        time={forecast.time}
+        />
+      ))}
+    </section>
+  </>  
+  )
+}
 
-export default App
+export default App;
